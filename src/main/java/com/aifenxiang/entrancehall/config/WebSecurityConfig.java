@@ -27,10 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
        return new AiUserServiceImpl();
     }
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("");
-    }
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

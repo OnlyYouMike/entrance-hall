@@ -2,14 +2,16 @@ package com.aifenxiang.entrancehall;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @author: zj
  * @create: 2018-08-21 21:45
  **/
 @SpringBootApplication
-public class EntranceHallApplication {
+@ComponentScan(basePackages = {"com.aifenxiang.entrancehall","com.aifenxiang.foundation"})
 
+public class EntranceHallApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(EntranceHallApplication.class,args);

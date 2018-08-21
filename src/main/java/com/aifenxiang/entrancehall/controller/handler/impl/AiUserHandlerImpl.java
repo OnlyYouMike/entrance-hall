@@ -7,11 +7,13 @@ import com.aifenxiang.foundation.utils.Md5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.stereotype.Component;
 
 /**
  * @author: zj
  * @create: 2018-08-21 23:44
  **/
+@Component
 public class AiUserHandlerImpl implements AiUserHandler {
 
     @Autowired
