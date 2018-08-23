@@ -2,9 +2,11 @@ package com.aifenxiang.entrancehall.controller;
 
 import com.aifenxiang.entrancehall.controller.exception.AiUserException;
 import com.aifenxiang.entrancehall.controller.handler.AiUserHandler;
+import com.aifenxiang.entrancehall.controller.model.AiUserModel;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,4 +34,12 @@ public class AiUserController {
         UserDetails userDetails = aiUserHandler.verifyAiUserSignIn(username, password);
         return "";
     }
+
+    @RequestMapping(value = SIGN_UP,method = RequestMethod.POST)
+    public String signUpAiFenXiang(@RequestBody AiUserModel userModel){
+        userModel.verifyParam();
+
+        return "";
+    }
+
 }

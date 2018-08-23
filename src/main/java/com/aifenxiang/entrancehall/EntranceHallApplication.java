@@ -9,8 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @create: 2018-08-21 21:45
  **/
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.aifenxiang.entrancehall","com.aifenxiang.foundation"})
-
+@ComponentScan(basePackages = {"com.aifenxiang.*"})
 public class EntranceHallApplication {
 
     public static void main(String[] args) {

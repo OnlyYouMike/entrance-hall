@@ -6,6 +6,9 @@
         <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="username" column="username" jdbcType="VARCHAR"/>
         <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+        <result property="iphone" column="iphone" jdbcType="VARCHAR"/>
+        <result property="sex" column="sex" jdbcType="INTEGER"/>
         <collection property="aiRoles" ofType="com.aifenxiang.entrancehall.controller.entity.verify.AiRole">
             <result property="name" column="name" jdbcType="VARCHAR" />
         </collection>

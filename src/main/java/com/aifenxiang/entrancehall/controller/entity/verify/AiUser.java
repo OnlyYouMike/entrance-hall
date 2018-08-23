@@ -26,6 +26,12 @@ public class AiUser  implements UserDetails {
 
     private String password;
 
+    private String email;
+
+    private String iphone;
+
+    private int sex;
+
     private List<AiRole> aiRoles;
 
     @Override
