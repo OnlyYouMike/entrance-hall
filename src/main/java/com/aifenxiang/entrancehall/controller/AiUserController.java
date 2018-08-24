@@ -1,15 +1,16 @@
 package com.aifenxiang.entrancehall.controller;
 
+import com.aifenxiang.entrancehall.controller.entity.request.RegisterAiUserModel;
+import com.aifenxiang.entrancehall.controller.entity.response.ResponseVo;
 import com.aifenxiang.entrancehall.controller.exception.AiUserException;
 import com.aifenxiang.entrancehall.controller.handler.AiUserHandler;
 import com.aifenxiang.entrancehall.controller.model.AiUserModel;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 import static com.aifenxiang.entrancehall.controller.apiconmon.Api.USER;
 import static com.aifenxiang.entrancehall.controller.apiconmon.Api.USER_MAPPING.*;
@@ -41,5 +42,16 @@ public class AiUserController {
 
         return "";
     }
+
+    @RequestMapping(value = REGISTER, method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseVo registerAiFenXiang(RegisterAiUserModel userModel, HttpServletRequest request){
+        userModel.verifyParam();
+
+        ResponseVo responseVo = aiUserHandler.registerAiFenXiang(userModel, request);
+
+        return responseVo;
+    }
+
 
 }

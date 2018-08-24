@@ -14,7 +14,29 @@
         </collection>
     </resultMap>
 
+    <select id="selectUserByUsename" parameterType="java.util.Map" resultType="com.aifenxiang.entrancehall.controller.model.AiUserModel">
+        SELECT * FROM aifenxiang.ai_users
+        where username = #{username}
+    </select>
 
+    <insert id="insertAiUser" parameterType="com.aifenxiang.entrancehall.controller.entity.request.RegisterAiUserModel">
+        INSERT INTO aifenxiang.ai_users (username, password, email
+        <if test="iphone != null">
+            , iphone
+        </if>
+        <if test="sex != null">
+            , sex
+        </if>
+        )
+        VALUES (#{username}, #{password}, #{email}
+        <if test="iphone != null">
+            , #{iphone}
+        </if>
+        <if test="sex != null">
+            , #{sex}
+        </if>
+        )
+    </insert>
 
     <select id="selectByNameAndPassword" resultMap="fileds" parameterType="map">
         select u.*,r.name
