@@ -17,4 +17,6 @@ public interface AiUserHandler {
     public UserDetails verifyAiUserSignIn(String userName, String password);
 
     ResponseVo registerAiFenXiang(RegisterAiUserModel userModel, HttpServletRequest request);
+
+    ResponseVo getRegisterCode(RegisterAiUserModel userModel, HttpServletRequest request);
 }

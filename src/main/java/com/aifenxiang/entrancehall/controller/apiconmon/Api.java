@@ -16,6 +16,8 @@ public class Api {
 
         public static final String REGISTER ="/register";
 
+        public static final String GETREGISTERCODE ="/getRegisterCode";
+
     }
 
 }

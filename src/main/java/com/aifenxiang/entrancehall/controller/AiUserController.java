@@ -53,5 +53,13 @@ public class AiUserController {
         return responseVo;
     }
 
+    @RequestMapping(value = GETREGISTERCODE, method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseVo getRegisterCode(RegisterAiUserModel userModel, HttpServletRequest request){
+
+        ResponseVo responseVo = aiUserHandler.getRegisterCode(userModel, request);
+
+        return responseVo;
+    }
 
 }
