@@ -9,10 +9,12 @@ import com.aifenxiang.pigeon.service.impl.SendSimpleMailServiceImpl;
 import com.aifenxiang.pigeon.service.impl.SendTemplateMailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
@@ -21,20 +23,19 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
  * @create: 2018-08-24 01:29
  **/
 @Configuration
-@EnableConfigurationProperties
 public class MailBeanConfig {
 
-    @Bean(value = "simpleMailSendService")
+    @Bean(name = "simpleMailSendService")
     public EmailSendService simpleMailSendService(){
         return new SendSimpleMailServiceImpl();
     }
 
-    @Bean(value = "attachmentMailSendService")
+    @Bean(name = "attachmentMailSendService")
     public EmailSendService attachmentMailSendService(){
         return new SendAttachmentMailServiceImpl();
     }
 
-    @Bean(value = "templateMailSendService")
+    @Bean(name = "templateMailSendService")
     public EmailSendService templateMailSendService(){
         return new SendTemplateMailServiceImpl();
     }

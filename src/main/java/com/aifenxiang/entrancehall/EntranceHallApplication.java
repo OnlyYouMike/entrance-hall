@@ -12,7 +12,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  **/
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.aifenxiang.entrancehall","com.aifenxiang.pigeon"})
-@EnableScheduling
 public class EntranceHallApplication {
 
     public static void main(String[] args) {
