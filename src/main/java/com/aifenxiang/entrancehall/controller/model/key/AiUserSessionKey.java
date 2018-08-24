@@ -1,4 +1,4 @@
-package com.aifenxiang.entrancehall.controller.entity.key;
+package com.aifenxiang.entrancehall.controller.model.key;
 
 public class AiUserSessionKey {
 

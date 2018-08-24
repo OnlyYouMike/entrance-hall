@@ -14,12 +14,12 @@
         </collection>
     </resultMap>
 
-    <select id="selectUserByUsename" parameterType="java.util.Map" resultType="com.aifenxiang.entrancehall.controller.model.AiUserModel">
+    <select id="selectUserByUsename" parameterType="java.util.Map" resultMap="fileds">
         SELECT * FROM aifenxiang.ai_users
         where username = #{username}
     </select>
 
-    <insert id="insertAiUser" parameterType="com.aifenxiang.entrancehall.controller.entity.request.RegisterAiUserModel">
+    <insert id="insertAiUser" parameterType="com.aifenxiang.entrancehall.controller.entity.verify.AiUser">
         INSERT INTO aifenxiang.ai_users (username, password, email
         <if test="iphone != null">
             , iphone

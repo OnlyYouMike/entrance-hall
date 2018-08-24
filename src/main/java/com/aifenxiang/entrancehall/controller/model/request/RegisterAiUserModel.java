@@ -1,4 +1,4 @@
-package com.aifenxiang.entrancehall.controller.entity.request;
+package com.aifenxiang.entrancehall.controller.model.request;
 
 import com.aifenxiang.entrancehall.controller.exception.AiUserException;
 import com.aifenxiang.entrancehall.controller.model.AiUserModel;

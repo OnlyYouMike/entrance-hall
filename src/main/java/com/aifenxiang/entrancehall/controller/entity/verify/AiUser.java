@@ -1,5 +1,7 @@
 package com.aifenxiang.entrancehall.controller.entity.verify;
 
+import com.aifenxiang.entrancehall.controller.model.AiUserModel;
+import com.aifenxiang.foundation.utils.Md5Util;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -63,4 +65,14 @@ public class AiUser  implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+
+    public AiUser (AiUserModel model){
+        this.username = model.getUsername();
+        this.email=model.getEmail();
+        this.iphone=model.getIphone();
+        this.password=Md5Util.getMd5(model.getPassword(),"UTF-8");
+        this.sex=model.getSex();
+    }
+
 }

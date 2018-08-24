@@ -1,16 +1,15 @@
 package com.aifenxiang.entrancehall.controller.handler.impl;
 
-import com.aifenxiang.entrancehall.controller.entity.key.AiUserSessionKey;
-import com.aifenxiang.entrancehall.controller.entity.request.RegisterAiUserModel;
-import com.aifenxiang.entrancehall.controller.entity.response.ResponseVo;
-import com.aifenxiang.entrancehall.controller.entity.response.ResultCode;
 import com.aifenxiang.entrancehall.controller.entity.verify.AiUser;
+import com.aifenxiang.entrancehall.controller.model.key.AiUserSessionKey;
+import com.aifenxiang.entrancehall.controller.model.request.RegisterAiUserModel;
+import com.aifenxiang.entrancehall.controller.model.response.ResponseVo;
+import com.aifenxiang.entrancehall.controller.model.response.ResultCode;
 import com.aifenxiang.entrancehall.controller.exception.AiUserException;
 import com.aifenxiang.entrancehall.controller.handler.AiUserHandler;
-import com.aifenxiang.entrancehall.controller.model.AiUserModel;
 import com.aifenxiang.entrancehall.controller.service.business.AiUserService;
 import com.aifenxiang.foundation.utils.Md5Util;
-import com.aifenxiang.pigeon.concurrent.SendMailUtil;
+import com.aifenxiang.pigeon.concurrent.MailCourierClient;
 import com.aifenxiang.pigeon.server.EmailApplication;
 import com.aifenxiang.pigeon.service.EmailSendService;
 import com.aifenxiang.pigeon.service.TemplateService;
@@ -41,7 +40,7 @@ public class AiUserHandlerImpl implements AiUserHandler {
     @Qualifier("templateMailSendService")
     private EmailSendService templateMailSendService;
     @Autowired
-    private SendMailUtil sendMailUtil;
+    private MailCourierClient mailCourierClient;
 
     @Override
     public UserDetails verifyAiUserSignIn(String userName, String password) {
@@ -62,12 +61,11 @@ public class AiUserHandlerImpl implements AiUserHandler {
         if (request.getSession().getAttribute(AiUserSessionKey.AI_USER_REGISTER_CODE) == null){
             throw new AiUserException("验证码失效, 请重新获取验证码");
         }
-
         if (! userModel.getRegisterCode().equals(request.getSession().getAttribute(AiUserSessionKey.AI_USER_REGISTER_CODE))){
             throw new AiUserException("验证码错误, 请重新输入");
         }
 
-        AiUserModel aiUser = aiUserService.selectUserByUsename(new HashMap<String, Object>(){
+        AiUser aiUser = aiUserService.selectUserByUsename(new HashMap<String, Object>(){
             {
                 put("username", userModel.getUsername());
             }
@@ -77,13 +75,11 @@ public class AiUserHandlerImpl implements AiUserHandler {
             throw new AiUserException("用户名已存在");
         }
 
-        userModel.setPassword(Md5Util.getMd5(userModel.getPassword(),"utf-8"));
-        int row = aiUserService.insertAiUser(userModel);
+        int row = aiUserService.insertAiUser(new AiUser(userModel));
 
         if (row != 1){
             throw new AiUserException("注册失败, 请重试");
         }
-
         ResponseVo responseVo = new ResponseVo();
         responseVo.setCode(ResultCode.RETURN_CODE_SUCCESS);
         responseVo.setMessage("注册成功");
@@ -111,7 +107,7 @@ public class AiUserHandlerImpl implements AiUserHandler {
         email.setRecipientMail(userModel.getEmail());
         email.setEmailSendService(templateMailSendService);
 
-        boolean isSend = sendMailUtil.send(email);
+        boolean isSend = mailCourierClient.send(email);
 
         if (!isSend){
             throw new AiUserException("验证码获取失败, 请检查邮箱地址是否有误");

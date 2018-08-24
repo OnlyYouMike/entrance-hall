@@ -1,4 +1,4 @@
-package com.aifenxiang.entrancehall.controller.entity.response;
+package com.aifenxiang.entrancehall.controller.model.response;
 
 import lombok.Data;
 

@@ -1,7 +1,7 @@
 package com.aifenxiang.entrancehall.controller;
 
-import com.aifenxiang.entrancehall.controller.entity.request.RegisterAiUserModel;
-import com.aifenxiang.entrancehall.controller.entity.response.ResponseVo;
+import com.aifenxiang.entrancehall.controller.model.request.RegisterAiUserModel;
+import com.aifenxiang.entrancehall.controller.model.response.ResponseVo;
 import com.aifenxiang.entrancehall.controller.exception.AiUserException;
 import com.aifenxiang.entrancehall.controller.handler.AiUserHandler;
 import com.aifenxiang.entrancehall.controller.model.AiUserModel;
@@ -47,9 +47,7 @@ public class AiUserController {
     @ResponseBody
     public ResponseVo registerAiFenXiang(RegisterAiUserModel userModel, HttpServletRequest request){
         userModel.verifyParam();
-
         ResponseVo responseVo = aiUserHandler.registerAiFenXiang(userModel, request);
-
         return responseVo;
     }
 
