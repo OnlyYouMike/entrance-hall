@@ -5,9 +5,9 @@ import com.aifenxiang.entrancehall.controller.model.response.ResponseVo;
 import com.aifenxiang.entrancehall.controller.exception.AiUserException;
 import com.aifenxiang.entrancehall.controller.handler.AiUserHandler;
 import com.aifenxiang.entrancehall.controller.model.AiUserModel;
+import lombok.extern.log4j.Log4j2;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-import org.hswebframework.web.logging.AccessLogger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
@@ -23,14 +23,13 @@ import static com.aifenxiang.entrancehall.controller.apiconmon.Api.USER_MAPPING.
  **/
 @RestController
 @RequestMapping(USER)
-@Slf4j
+@Log4j2
 public class AiUserController {
 
     @Autowired
     private AiUserHandler aiUserHandler;
 
 
-    @AccessLogger("用户登录")
     @RequestMapping(value = SIGN_IN,method = RequestMethod.GET)
     public String signInAiFenXiang(String username,String password){
         if (StringUtils.isBlank(username)||StringUtils.isBlank(password)){

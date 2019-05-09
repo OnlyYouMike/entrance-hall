@@ -1,6 +1,5 @@
 package com.aifenxiang.entrancehall;
 
-import org.hswebframework.web.loggin.aop.EnableAccessLogger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,7 +12,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  **/
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.aifenxiang.entrancehall","com.aifenxiang.pigeon"})
-@EnableAccessLogger
 public class EntranceHallApplication {
 
     public static void main(String[] args) {
