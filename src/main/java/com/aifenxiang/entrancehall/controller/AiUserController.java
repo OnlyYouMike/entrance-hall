@@ -1,5 +1,6 @@
 package com.aifenxiang.entrancehall.controller;
 
+import com.aifenxiang.entrancehall.aop.accesslog.AccessLog;
 import com.aifenxiang.entrancehall.controller.model.request.RegisterAiUserModel;
 import com.aifenxiang.entrancehall.controller.model.response.ResponseVo;
 import com.aifenxiang.entrancehall.controller.exception.AiUserException;
@@ -30,14 +31,15 @@ public class AiUserController {
     private AiUserHandler aiUserHandler;
 
 
+    @AccessLog("登录")//要记录某个方法的访问日志,只需要增加该注释即可
     @RequestMapping(value = SIGN_IN,method = RequestMethod.GET)
     public String signInAiFenXiang(String username,String password){
         if (StringUtils.isBlank(username)||StringUtils.isBlank(password)){
             log.error("账号密码不能为空");
-            throw new AiUserException("账号密码不能为空");
+//            throw new AiUserException("账号密码不能为空");
         }
-        UserDetails userDetails = aiUserHandler.verifyAiUserSignIn(username, password);
-        return "";
+//        UserDetails userDetails = aiUserHandler.verifyAiUserSignIn(username, password);
+        return "123";
     }
 
     @RequestMapping(value = SIGN_UP,method = RequestMethod.POST)
@@ -47,6 +49,7 @@ public class AiUserController {
         return "";
     }
 
+    @AccessLog("注册")
     @RequestMapping(value = REGISTER, method = RequestMethod.GET)
     @ResponseBody
     public ResponseVo registerAiFenXiang(RegisterAiUserModel userModel, HttpServletRequest request){
