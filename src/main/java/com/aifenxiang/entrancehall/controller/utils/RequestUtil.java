@@ -98,9 +98,9 @@ public class RequestUtil {
             length = ctMethod.getParameterTypes().length;//获取该方法所有参数的类型,返回一个数组,长度是参数个数
             pos = Modifier.isStatic(ctMethod.getModifiers()) ? 0 : 1;//判断该方法是不是静态的,实例方法变量表的第一个参数是this,所以实例方法的参数下标应该+1
         } catch (ClassNotFoundException e) {
-//            throw new ClassException("");
+            //异常暂时不处理
         } catch (NotFoundException e) {
-//            throw new NotFindException("未找到参数类切");
+            //异常暂时不处理
         }
         Map<String, Object> paramMap = new HashMap<>();
         Object[] paramsArgsValues = joinPoint.getArgs();//获取切面方法的请求参数值的集合(就是spring从请求中转化过来的参数值)
